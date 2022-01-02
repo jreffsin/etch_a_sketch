@@ -1,4 +1,6 @@
-# sketchpad
-A fun sketchpad app
+# etch_a_sketch
+A fun etch_a_sketch app
 
-skills showcased: javascript, css, html
+languages used: javascript, css, html
+
+skills showcased include: DOM modification
