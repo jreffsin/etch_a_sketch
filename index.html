@@ -10,13 +10,23 @@
     </head>
 
     <body>
-        <input type="color" id='colorSelector' class="hoverElement">
-        <button class="colorButton btn hoverElement">Color</button>
-        <button class="eraserButton btn hoverElement">Erase</button>
-        <button class="clearButton btn hoverElement">Clear</button>
-        <input type="range" min="1" max="64" value="32" id="slider">
-        <p id="sliderVal">32 x 32</p>
-        <div id="sketchPadCont"></div>
+        <div id="container">
+            <div id="controlCont">
+                <input type="color" id='colorSelector' class="hoverElement">
+                <button class="colorButton btn hoverElement">Color Mode</button>
+                <button class="eraserButton btn hoverElement">Erase Mode</button>
+                <button class="clearButton btn hoverElement">Clear</button>
+                <div id="sliderCont">
+                    <input type="range" min="1" max="64" value="32" id="slider">
+                    <p id="sliderVal">32 x 32</p>
+                </div>
+            </div>
+
+            <div id="titleAndSketchpad">
+                <h1 id="titleText">Etch-A-Sketch</h1>
+                <div id="sketchPadCont"></div>
+            </div>
+        </div>
     
     </body>
 

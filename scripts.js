@@ -1,13 +1,15 @@
 //script file for sketchpad app
 
+//declare eraser as global variable for button handling
 let eraser = false;
 
-//define function to populate sketch area with the right number of divs
+//define function to populate sketch area with the right number of 'pixels'
 function populateGrid(gridSize) {
 
+    //store sketchpad container in variable
     let sketchPadCont = document.querySelector("#sketchPadCont");
 
-    //set number of columns for sketchpad's grid template
+    //set number of columns for sketchpad's pixel grid
     sketchPadCont.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
 
     //create divs to populate sketchpad then append each one to sketchpad container
@@ -17,27 +19,13 @@ function populateGrid(gridSize) {
         sketchPadCont.appendChild(pixel);
     }
 
-    //add mouseover event listener to all pixel divs that changes color
+    //add mouseover event listener to all pixel divs that changes pixel color
     document.querySelectorAll('.pixel').forEach(element => {element.addEventListener('mouseover', changeColor)});
-}
-
-//define function that changes color of div that is passed to it from mouseover event
-function changeColor(e){
-    //if eraser button pressed
-    if (eraser){
-    e.target.style.backgroundColor = 'white';
-    } else {
-        e.target.style.backgroundColor = document.getElementById('colorSelector').value;
-    }
 }
 
 //define function to add all event listeners
 function addListeners(){
-    //declare slider and silder value display variables
-    let slider = document.getElementById('slider');
-    let para = document.getElementById('sliderVal');
-    
-
+   
     //add clear button listener
     let clearButton = document.querySelector('.clearButton');
     clearButton.addEventListener('click', clearPixels);
@@ -46,7 +34,7 @@ function addListeners(){
     let eraserButton = document.querySelector('.eraserButton');
     eraserButton.addEventListener('click', () => {
         eraser = true;
-        eraserButton.setAttribute('style', 'background-color:rgb(110, 113, 117)')
+        eraserButton.setAttribute('style', 'background-color:rgb(142, 146, 152)')
         colorButton.setAttribute('style', 'background-color:lightgray')
     });
 
@@ -54,13 +42,15 @@ function addListeners(){
     let colorButton = document.querySelector('.colorButton');
     colorButton.addEventListener('click', () => {
         eraser = false;
-        colorButton.setAttribute('style', 'background-color:rgb(110, 113, 117)')
+        colorButton.setAttribute('style', 'background-color:rgb(142, 146, 152)')
         eraserButton.setAttribute('style', 'background-color:lightgray')
     });
 
     //add slider display value listener
+    let slider = document.getElementById('slider');
+    let sliderDisplayVal = document.getElementById('sliderVal');
     slider.addEventListener('input', () => {
-        para.innerText = `${slider.value} x ${slider.value}`;
+        sliderDisplayVal.innerText = `${slider.value} x ${slider.value}`;
     })
 
     //add slider change value listener
@@ -68,9 +58,30 @@ function addListeners(){
         document.querySelectorAll('.pixel').forEach(element => element.remove());
         populateGrid(slider.value);
     })
+
+    //add color selecter change listener
+    let colorSelector = document.getElementById('colorSelector');
+    colorSelector.addEventListener('change', () => {
+        eraser = false;
+        colorButton.setAttribute('style', 'background-color:rgb(142, 146, 152)')
+        eraserButton.setAttribute('style', 'background-color:lightgray')
+    })
+
 }
 
-//function that clears pixels back to white
+//define function that changes color of div that is passed to it from mouseover event
+function changeColor(e){
+    //if eraser button is pressed
+    if (eraser){
+    e.target.style.backgroundColor = 'white';
+    } 
+    //else if eraser button is not pressed
+    else {
+        e.target.style.backgroundColor = document.getElementById('colorSelector').value;
+    }
+}
+
+//define function that clears pixels back to white
 function clearPixels(){
     document.querySelectorAll('.pixel').forEach(element => element.style.backgroundColor = 'white');
 
@@ -79,7 +90,7 @@ function clearPixels(){
     eraser = false;
     let colorButton = document.querySelector('.colorButton');
     let eraserButton = document.querySelector('.eraserButton');
-    colorButton.setAttribute('style', 'background-color:rgb(110, 113, 117)')
+    colorButton.setAttribute('style', 'background-color:rgb(142, 146, 152)')
     eraserButton.setAttribute('style', 'background-color:lightgray')
     }
 }
