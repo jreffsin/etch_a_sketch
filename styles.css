@@ -12,3 +12,28 @@
     outline: none;
 }
 
+#slider {
+    appearance: none;
+    width: 200px;
+    height: 15px;
+    background: #d3d3d3;
+    border-radius: 10px;
+    opacity: 0.7;
+  }
+
+  .btn {
+      background-color: lightgray;
+      border: none;
+  }
+
+  .hoverElement {
+    transition: .2s;
+  }
+
+  .hoverElement:hover {
+      transform: scale(1.1);
+  }
+
+  .colorButton {
+    background-color:rgb(110, 113, 117)
+  }
